@@ -1,4 +1,4 @@
-;; Day 1
+;; Day 1 No.1
 ;
 ; Complete the 'plusMinus' function below.
 ;
