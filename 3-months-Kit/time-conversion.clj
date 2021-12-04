@@ -1,4 +1,4 @@
-;; Day1 No.3
+;; No.3
 ;
 ; Complete the 'timeConversion' function below.
 ;
