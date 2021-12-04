@@ -1,4 +1,4 @@
-;; Day 1 No.2
+;; No.2
 
 ;
 ; Complete the 'miniMaxSum' function below.
