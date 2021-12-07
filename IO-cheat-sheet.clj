@@ -1,4 +1,4 @@
-;; Read multi lines.
+;; 1. Read multi lines.
 (def s (line-seq (java.io.BufferedReader. *in*)))
 
 ;; or
