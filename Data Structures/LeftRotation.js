@@ -14,3 +14,13 @@ function rotateLeft(d, arr) {
     const dTimes = range(d);
     return dTimes.reduce((acc, _) => (shiftLeft(acc)), arr);
 }
+
+// v2. 通ったー！
+
+function rotateLeft(d, arr) {
+    // Write your code here
+    const firstDthElements = arr.slice(0, d);
+    const theOthers = arr.slice(d);
+    return [...theOthers, ...firstDthElements];
+}
+
