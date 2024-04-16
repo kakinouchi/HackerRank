@@ -17,21 +17,36 @@
 // 1 0 5
 // x = 0, y = 5, lastAnswer の初期値は 0 なので、
 // (x ^ lastAnswer) % 2 == 0
-// index = 0
-// よって、arr[0] = 5;
+// つまり、index = 0
+// よって、arr[0] = [5];
 
 // 1 1 7
 // x = 1, y = 7, lastAnswer = 0 なので、
 // (x ^ lastAnswer) % 2 == 1;
-// よって、arr[1] = 7;
+// つまり、index = 1
+// よって、arr[1] = [7];
 
 // 1 0 3
 // x = 0, y = 3, lastAnswer = 0 なので、
 // (x ^ lastAnswer) % 2 == 0;
-// よって、arr[0] = 3;
+// つまり、index = 0
+// よって、arr[0] = [5, 3];
 
 // 2 1 0
+// x = 1, y = 0, lastAnswer = 0 なので、
+// (x ^ lastAnswer) % 2 == 1
+// つまり、index = 1
+// y % size(arr[idx]) == 0
+// なので、
+// arr[1][0] つまり 7 を lastAnswer に。 
+
 // 2 1 1
+// x = 1, y = 1, lastAnswer = 7 なので、
+// (x ^ lastAnswer) % 2 == 6 % 2 == 0
+// つまり、index = 0
+// y % size(arr[idx]) == 1 % 2 == 1
+// なので、
+// arr[0][1] つまり 3 を lastAnswer に。 
 
 // v1. ここまでやった。 queryType = 1 はできたんじゃないかな。
 function dynamicArray(n, queries) {
