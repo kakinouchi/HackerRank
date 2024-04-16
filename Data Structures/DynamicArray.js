@@ -16,18 +16,18 @@
 // Sample がこう。
 // 1 0 5
 // x = 0, y = 5, lastAnswer の初期値は 0 なので、
-// (x ^ lastAnswer) % 2 = 0
+// (x ^ lastAnswer) % 2 == 0
 // index = 0
 // よって、arr[0] = 5;
 
 // 1 1 7
 // x = 1, y = 7, lastAnswer = 0 なので、
-// (x ^ lastAnswer) % 2 = 1;
+// (x ^ lastAnswer) % 2 == 1;
 // よって、arr[1] = 7;
 
 // 1 0 3
 // x = 0, y = 3, lastAnswer = 0 なので、
-// (x ^ lastAnswer) % 2 = 0;
+// (x ^ lastAnswer) % 2 == 0;
 // よって、arr[0] = 3;
 
 // 2 1 0
