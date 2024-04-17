@@ -72,7 +72,6 @@ function dynamicArray(n, queries) {
 }
 
 // v2. テストケースは通るけど submit したら落ちたー
-
 function dynamicArray(n, queries) {
     // Write your code here
     let lastAnswerHistory = [0];
@@ -100,4 +99,30 @@ function dynamicArray(n, queries) {
     return lastAnswerToReturn;
 }
 
+// v3. 通ったー！。Array(3) のベタ書きが原因だったw
+function dynamicArray(n, queries) {
+    // Write your code here
+    let lastAnswerHistory = [0];
+    const arrays = [...Array(n)].map(_ => [])
+    
+    queries.forEach( query => {
+        const lastAnswer = lastAnswerHistory.slice(-1);
+        const [queryType, x, y] = query;
+    
+        if( queryType == 1 ) {
+            const index = (x ^ lastAnswer) % n;
+            console.log(index)
+            arrays[index] = [...arrays[index], y];
+        }
+        if( queryType == 2 ) {
+            const index = (x ^ lastAnswer) % n;
+            const secondIndex = y % arrays[index].length
+            lastAnswerHistory = [...lastAnswerHistory, arrays[index][secondIndex]]
+        }
+    })
+    
+    const [_, ...lastAnswerToReturn] = lastAnswerHistory;
+
+    return lastAnswerToReturn;
+}
 
