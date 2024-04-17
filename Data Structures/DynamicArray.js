@@ -194,5 +194,44 @@ function dynamicArray(n, queries) {
     return lastAnswerToReturn;
 }
 
+// v6. v5 の改善版。
+
+function dynamicArray(n, queries) {
+    const initialState = {
+        lastAnswerHistory: [0],
+        arrays: [...Array(n)].map(_ => [])
+    }
+
+    const lastAnswerHistoryAndArrays = queries.reduce((acc, currentQuery) => {
+        const lastAnswerHistory = acc.lastAnswerHistory;
+        // const newArrays = [...acc.arrays]; ディープコピーするとテストが落ちる。
+        const newArrays = acc.arrays;
+        
+        const lastAnswer = lastAnswerHistory.slice(-1);
+        const [queryType, x, y] = currentQuery;
+    
+        if( queryType == 1 ) {
+            const index = (x ^ lastAnswer) % n;
+            newArrays[index] = [...newArrays[index], y];
+            return {
+                ...acc,
+                arrays: newArrays
+            };
+        }
+        if( queryType == 2 ) {
+            const index = (x ^ lastAnswer) % n;
+            const secondIndex = y % newArrays[index].length
+            return {
+                ...acc,
+                lastAnswerHistory: [...lastAnswerHistory, newArrays[index][secondIndex]]
+            }
+        }
+    }, initialState)
+    
+    const [_, ...lastAnswerToReturn] = lastAnswerHistoryAndArrays.lastAnswerHistory;
+
+    return lastAnswerToReturn;
+}
+
 
 
