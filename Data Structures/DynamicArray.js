@@ -152,5 +152,47 @@ function dynamicArray(n, queries) {
     return lastAnswerToReturn;
 }
 
+// v5. さらに immutable なコードにしたら、遅すぎていくつかのテストで落ちてしまった。もうちょっと考えたい。
+function dynamicArray(n, queries) {
+    const initialState = {
+        lastAnswerHistory: [0],
+        arrays: [...Array(n)].map(_ => [])
+    }
+
+    const lastAnswerHistoryAndArrays = queries.reduce((acc, current) => {
+        const lastAnswerHistory = acc.lastAnswerHistory;
+        const arrays = acc.arrays;
+        
+        const lastAnswer = lastAnswerHistory.slice(-1);
+        const [queryType, x, y] = current;
+    
+        if( queryType == 1 ) {
+            const index = (x ^ lastAnswer) % n;
+            const newValue = [...arrays[index], y]
+            const newArray = [
+                ...arrays.slice(0, index),
+                newValue,
+                ...arrays.slice(index + 1)
+            ]
+            return {
+                ...acc,
+                arrays: newArray
+            };
+        }
+        if( queryType == 2 ) {
+            const index = (x ^ lastAnswer) % n;
+            const secondIndex = y % arrays[index].length
+            return {
+                ...acc,
+                lastAnswerHistory: [...lastAnswerHistory, arrays[index][secondIndex]]
+            }
+        }
+    }, initialState)
+    
+    const [_, ...lastAnswerToReturn] = lastAnswerHistoryAndArrays.lastAnswerHistory;
+
+    return lastAnswerToReturn;
+}
+
 
 
