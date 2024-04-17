@@ -126,3 +126,31 @@ function dynamicArray(n, queries) {
     return lastAnswerToReturn;
 }
 
+// v4. lastAnswerHistory の let 宣言をやめて少し immutable に。
+function dynamicArray(n, queries) {
+    const arrays = [...Array(n)].map(_ => [])
+    
+    const lastAnswerHistory = queries.reduce((acc, current) => {
+        const lastAnswer = acc.slice(-1);
+        const [queryType, x, y] = current;
+    
+        if( queryType == 1 ) {
+            const index = (x ^ lastAnswer) % n;
+            console.log(index)
+            arrays[index] = [...arrays[index], y];
+            return acc;
+        }
+        if( queryType == 2 ) {
+            const index = (x ^ lastAnswer) % n;
+            const secondIndex = y % arrays[index].length
+            return [...acc, arrays[index][secondIndex]]
+        }
+    }, [0])
+    
+    const [_, ...lastAnswerToReturn] = lastAnswerHistory;
+
+    return lastAnswerToReturn;
+}
+
+
+
