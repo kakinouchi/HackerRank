@@ -5,6 +5,8 @@ function arrayManipulation(n, queries) {
     const initialArray = [...Array(n).keys()].map( _ => 0 )
     
     // You can write the way to loop queries only one time
+
+    // この発想だと、n*m 回の操作が必要。
     const afterQueried = queries.reduce( (acc, currentQuery) => {
         const [leftIndex, rightIndex, summand] = currentQuery;
         const [leftIndexInZeroIndexed, rightIndexInZeroIndexed] = 
@@ -17,6 +19,14 @@ function arrayManipulation(n, queries) {
             return item;
         });
     }, initialArray);
-    
-    return afterQueried.reduce((acc, current) => current >= acc ? current : acc)   
+
+    // ここで O(n) 。
+    return afterQueried.reduce((acc, current) => current >= acc ? current : acc);
+
+    // なので、結局、O(n*m) + O(n) = O(n*m) のオーダー。
 }
+
+// 途中でオーダーを書いたようなオーダーになるので、
+// v1 の速度を改善するには、O(m) のオーダーになると嬉しい。
+// (n <= 10^7 , m <= 2 * 10^5 なので、m の方が小さい可能性が高い。)
+// え、こんなんできんの？
