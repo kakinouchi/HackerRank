@@ -30,3 +30,8 @@ function arrayManipulation(n, queries) {
 // v1 の速度を改善するには、O(m) のオーダーになると嬉しい。
 // (n <= 10^7 , m <= 2 * 10^5 なので、m の方が小さい可能性が高い。)
 // え、こんなんできんの？
+
+
+// あ、なんか、a と b の range のイメージを考えてたらふと気づいたけど、
+// a と b の範囲内に入るような index のうち、最頻の　index とその頻度が求まれば、
+// freqOfIndex * summand が答えか。
