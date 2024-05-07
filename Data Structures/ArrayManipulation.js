@@ -102,3 +102,39 @@ function arrayManipulation(n, queries) {
 // クエリごとに累積させるのではなくて、クエリをなめきったあとに一回だけ累積和の計算をする
 // ということか。
 
+// (2024年5月7日）
+// コードに落としてみたけど、上のサンプルで実行したところ、3つ目のクエリのあとの結果が一致しないな。
+
+function arrayManipulation(n, queries) {
+    // Write your code here
+    const cumulativeSumArray = Array(n).fill(0);
+    const generatingArray = Array(n + 1).fill(0);
+    
+    // You can write the way to loop queries only one time
+
+    const arrayAfterQueried = queries.reduce( (acc, currentQuery) => {
+        const [leftIndex, rightIndex, summand] = currentQuery;
+        const [leftIndexInZeroIndexed, rightIndexInZeroIndexed] = 
+            [leftIndex - 1, rightIndex - 1];
+        
+        const newCumulativeArray = acc.map( (item, index) => {
+            if( leftIndexInZeroIndexed <= index && index <= rightIndexInZeroIndexed ) {
+                return item + summand;
+            }
+            return item;
+        });
+        
+        generatingArray[leftIndex - 1] = summand;
+        generatingArray[rightIndex] = -summand;
+        
+        console.log("updated:")
+        console.log(newCumulativeArray)
+        console.log(generatingArray)
+        
+        return newCumulativeArray;
+ 
+    }, cumulativeSumArray);
+
+    return arrayAfterQueried.reduce((acc, current) => current >= acc ? current : acc);
+}
+
