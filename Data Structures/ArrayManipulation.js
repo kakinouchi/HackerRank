@@ -109,8 +109,6 @@ function arrayManipulation(n, queries) {
     // Write your code here
     const cumulativeSumArray = Array(n).fill(0);
     const generatingArray = Array(n + 1).fill(0);
-    
-    // You can write the way to loop queries only one time
 
     const arrayAfterQueried = queries.reduce( (acc, currentQuery) => {
         const [leftIndex, rightIndex, summand] = currentQuery;
@@ -144,8 +142,6 @@ function arrayManipulation(n, queries) {
     // Write your code here
     // const cumulativeSumArray = Array(n).fill(0);
     const generatingArray = Array(n + 1).fill(0);
-    
-    // You can write the way to loop queries only one time
     
     queries.forEach( query => {
         const [leftIndex, rightIndex, summand] = query;
