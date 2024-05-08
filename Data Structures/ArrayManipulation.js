@@ -138,3 +138,33 @@ function arrayManipulation(n, queries) {
     return arrayAfterQueried.reduce((acc, current) => current >= acc ? current : acc);
 }
 
+// (2024年5月8日)
+// できたー！
+function arrayManipulation(n, queries) {
+    // Write your code here
+    // const cumulativeSumArray = Array(n).fill(0);
+    const generatingArray = Array(n + 1).fill(0);
+    
+    // You can write the way to loop queries only one time
+    
+    queries.forEach( query => {
+        const [leftIndex, rightIndex, summand] = query;
+        generatingArray[leftIndex - 1] += summand;
+        generatingArray[rightIndex] += -summand;
+    })
+        
+    const cumulativeSummed = generatingArray.reduce((acc, current) => {
+        const newCumulativeSum = acc.cumulativeSum + current;
+        
+        return {
+            cumulativeSum: newCumulativeSum,
+            max: acc.max >= newCumulativeSum ? acc.max : newCumulativeSum
+        }
+    }, {
+        cumulativeSum: 0,
+        max: 0,
+    })
+
+    return cumulativeSummed.max;
+}
+
