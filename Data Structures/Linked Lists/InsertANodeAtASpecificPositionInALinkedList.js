@@ -33,3 +33,44 @@ function insertNodeAtPosition(llist, data, position) {
     
     return llist;
 }
+
+// (2024年5月23日)
+// これを経て...
+function insertNodeAtPosition(llist, data, position) {
+    // if you want to insert the data to the position = 2
+    // const secondNodeRef = llist.next;
+    // const thirdNodeRef = llist.next.next;
+    // const newNode = new SinglyLinkedListNode();
+    // newNode.data = data;
+    // newNode.next = thirdNodeRef;
+    // secondNodeRef.next = newNode
+    
+    let frontNode = llist;
+    for(let i = 0; i < 2 - 1; i++){
+        frontNode = frontNode.next;
+    }
+    const backNode = frontNode.next;
+    const newNode = new SinglyLinkedListNode();
+    newNode.data = data;
+    newNode.next = backNode;
+    frontNode.next = newNode
+
+    return llist;
+}
+
+// (2024年5月23日)
+// 一般化できた！ ちょっとキショいので、明日再帰を考えてもいいな。
+function insertNodeAtPosition(llist, data, position) {    
+    let frontNode = llist;
+    for(let i = 0; i < position - 1; i++){
+        frontNode = frontNode.next;
+    }
+    const backNode = frontNode.next;
+    const newNode = new SinglyLinkedListNode();
+    newNode.data = data;
+    newNode.next = backNode;
+    frontNode.next = newNode
+
+    return llist;
+}
+
