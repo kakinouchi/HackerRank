@@ -74,3 +74,26 @@ function insertNodeAtPosition(llist, data, position) {
     return llist;
 }
 
+// (2024年5月24日)
+// こんなノリじゃないかなー。通らなかったけど、違うところがわからん！
+function insertNodeAtPosition(llist, data, position) {
+    if(position == 0) {
+        const newNode = new SinglyLinkedListNode();
+        newNode.data = data;
+        newNode.next = llist;
+        return newNode;
+    }
+    if(position == 1) {
+        const firstNodeRef = llist;
+        const secondNodeRef = llist.next;
+        const newNode = new SinglyLinkedListNode();
+        newNode.data = data;
+        newNode.next = secondNodeRef;
+        firstNodeRef.next = newNode;
+        
+        return llist;
+    }
+    insertNodeAtPosition(llist.next, data, position - 1);
+}
+
+
