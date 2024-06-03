@@ -96,4 +96,28 @@ function insertNodeAtPosition(llist, data, position) {
     insertNodeAtPosition(llist.next, data, position - 1);
 }
 
+// (2024年6月3日)
+// 再帰の基本的な書き方を忘れていた。
+// 再帰的に呼び出すところで、return をしないと返却が戻っていかないんだな。
+// ただ、一個ずれてしまうので、明日そこを再考する。
+function insertNodeAtPosition(llist, data, position) {
+    if(position == 1) {
+        const firstNodeRef = llist;
+        const secondNodeRef = llist.next;
+        const newNode = new SinglyLinkedListNode();
+        newNode.data = data;
+        newNode.next = secondNodeRef;
+        firstNodeRef.next = newNode;
+
+        return llist;
+    }
+    if(position == 0) {
+        const newNode = new SinglyLinkedListNode();
+        newNode.data = data;
+        newNode.next = llist;
+        return newNode;
+    }
+    return insertNodeAtPosition(llist.next, data, position - 1);
+}
+
 
