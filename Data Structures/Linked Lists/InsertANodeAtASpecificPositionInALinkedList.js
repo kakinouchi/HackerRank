@@ -120,4 +120,25 @@ function insertNodeAtPosition(llist, data, position) {
     return insertNodeAtPosition(llist.next, data, position - 1);
 }
 
+// (2024年6月4日)
+// んーなんかこういうノリで書けると思うんだよな〜。
+function insertNodeAtPosition(llist, data, position) {
+    const _insertNodeAtPosition = (llist, data, position, frontNode) => {
+        if(position == 1) {
+            const backNode = frontNode.next;    
+            const newNode = new SinglyLinkedListNode();
+            newNode.data = data;
+            newNode.next = backNode;
+            frontNode.next = newNode;
+            
+            return llist;
+        }
+        if(position == 0) {
+            
+        }
+        return _insertNodeAtPosition(llist, data, position - 1, frontNode.next)
+    }
+    _insertNodeAtPosition(llist, data, position, llist);
+}
+
 
