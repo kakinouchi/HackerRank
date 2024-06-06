@@ -217,3 +217,45 @@ function insertNodeAtPosition(llist, data, position) {
     // return llist;
 }
 
+// (2024年6月6日)
+// ちょっと近づいた気がする。
+function insertNodeAtPosition(llist, data, position) {
+
+    const recursiveInsertNodeAtPosition = (llist, count, newLlistHead, newLlistLast) => {
+        console.log("\n")
+        console.log("count");
+        console.log(count)
+        
+        const newNode = new SinglyLinkedListNode()
+
+        console.log("data")
+        if(count == position) {
+            console.log(data);
+            newLlistLast.data = data;
+            newLlistLast.next = newNode;
+        } else {
+            console.log(llist.data);
+            newLlistLast.data = llist.data;
+            newLlistLast.next = newNode;
+        }
+        
+        console.log("newLlistHead")
+        console.log(newLlistHead)
+                
+        const nextNode = count == position ? llist : llist.next;
+        
+        if(nextNode == null){
+            return;
+        }
+        return recursiveInsertNodeAtPosition(nextNode, count + 1, newLlistHead, newNode)
+    }
+    
+    const newNode = new SinglyLinkedListNode()
+    
+    recursiveInsertNodeAtPosition(
+        llist,
+        0,
+        newNode,
+        newNode
+        );
+};
